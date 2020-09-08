@@ -6,6 +6,10 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const Signup = () => {
     let [name, setName] = useState('');
     let [email, setEmail] = useState('')
+    let [birthday, setBirthday] = useState('')
+    let [artistType, setArtistType] = useState('')
+    let [content,setContent] = useState('')
+    let [bio, setBio] = useState('')
     let [password, setPassword] = useState('');
     let [confirmPassword, setConfirmPassword] = useState('');
     let [redirect, setRedirect] = useState(false);
@@ -16,6 +20,22 @@ const Signup = () => {
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
+    }
+
+    const handleContent = (e) => {
+        setContent(e.target.value);
+    }
+
+    const handleBirthday = (e)=> {
+        setBirthday (e.target.value)
+    }
+
+    const handleBio = (e) => {
+        setBio(e.target.value)
+    }
+    
+    const handleArtistType = (e) => {
+        setArtistType(e.target.value)
     }
 
     const handlePassword = (e) => {
@@ -30,7 +50,7 @@ const Signup = () => {
         e.preventDefault();
 
         if (password === confirmPassword) {
-            const newUser = { name, email, password }
+            const newUser = { name, email, password, artistType, bio, content, birthday }
                         // connecting to the backend server 
             axios.post(`${REACT_APP_SERVER_URL}/api/users/register`, newUser)
             .then(response => {
@@ -64,6 +84,21 @@ const Signup = () => {
                         <div className="form-group">
                             <label htmlFor="confirmPassword">Confirm Password</label>
                             <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPassword} className="form-control"/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="birthday">Birthday</label>
+                            <input type="birthday" name="birthday" value={birthday} onChange={handleBirthday} className="form-control"/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="artistType">Artist Type</label>
+                            <input type="artistType" name="artistType" value={artistType} onChange={handleArtistType} className="form-control"/>
+                        </div><div className="form-group">
+                            <label htmlFor="content">Content</label>
+                            <input type="content" name="content" value={content} onChange={handleContent} className="form-control"/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="bio">Bio</label>
+                            <input type="bio" name="bio" value={bio} onChange={handleBio} className="form-control"/>
                         </div>
                         <button type="submit" className="btn btn-primary float-right">Submit</button>
                     </form>
