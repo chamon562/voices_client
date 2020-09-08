@@ -37,6 +37,6 @@ const Profile = (props) =>{
                 
             </div>
         )
-        console.log(props.user)
+        
 }
 export default Profile
