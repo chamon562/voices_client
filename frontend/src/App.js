@@ -8,10 +8,10 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 import About from './components/About';
+// import Community from './components/Community'
+import Post from './components/Post'
 import Footer from './components/Footer';
 import './App.css';
-
-
 // user needs to be logged in to see this route
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const user = localStorage.getItem('jwtToken');
@@ -20,12 +20,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     }}
   />;
 }
-
 function App() {
   // set state values
   let [currentUser, setCurrentUser] = useState("");
   let [isAuthenticated, setIsAuthenticated] = useState(true);
-
   useEffect(() => {
     let token;
     if (!localStorage.getItem('jwtToken')) {
@@ -37,13 +35,11 @@ function App() {
       setIsAuthenticated(true);
     }
   }, []);
-
   const nowCurrentUser = (userData) => {
     console.log('nowCurrentUser is working...');
     setCurrentUser(userData);
     setIsAuthenticated(true);
   };
-
   const handleLogout = () => {
     if (localStorage.getItem('jwtToken')) {
       localStorage.removeItem('jwtToken');
@@ -51,10 +47,8 @@ function App() {
       setIsAuthenticated(false);
     }
   }
-
   console.log('Current User', currentUser);
   console.log('Authenicated', isAuthenticated);
-
   return (
     <div>
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
@@ -67,6 +61,8 @@ function App() {
           />
           <Route path="/about" component={ About } />
           <PrivateRoute path="/profile" component={ Profile } user={currentUser} />
+          <PrivateRoute path="/post" component={ Post } user={currentUser} />
+          {/* <PrivateRoute path="/community" component={ Community } user={currentUser} /> */}
           <Route exact path="/" component={ Welcome } />
         </Switch>
       </div>
@@ -74,5 +70,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
