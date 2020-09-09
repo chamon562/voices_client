@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 const Post = (props) =>{
-    const userData = props.user
+    
     let [title, setTitle] = useState('')
     let [content, setContent] = useState('')
     let [category, setCategory] = useState('')
+
+
+    // useEffect(()=>{
+    //     axios.get(`${REACT_APP_SERVER_URL}/api/posts/post`)
+    //     .then(response=>{
+    //         console.log(response.data)
+    //         setTitle(response.data.title)
+    //         setContent(response.data.content)
+    //         setCategory(response.data.category)
+    //     })
+    // }) 
+
     const handleTitle = (e) =>{
         setTitle(e.target.value)
     }
@@ -18,19 +30,28 @@ const Post = (props) =>{
     }
     const handleSubmit = (e) =>{
         e.preventDefault()
-        const newPost = {title, category, content}
-        axios.post(`${REACT_APP_SERVER_URL}/api/posts/newpost`, newPost)
-        .then(response => {
-            console.log(response);
+        const newpost = {title, content, category}
+        axios.post(`${REACT_APP_SERVER_URL}/api/posts/newpost`, newpost, {
+            method: "POST", 
+            body: JSON.stringify({
+                title,
+                content,
+                category
+            }),
+            headers:{
+                'Content-Type': 'application/json',
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
+            }
         })
-        .catch(error => console.log(error));
+       
+        .then(res => console.log(res.data) )
+    .catch(error => console.log(error));
     }
+        
     return(
         <div>
             <h1>Post Your Things:</h1>
-            <h2>{props.title}</h2>
-            <h2>{props.category}</h2>
-            <h2>{props.content}</h2>
+            
             <div className="row mt-4">
                 <div className="col-md-7 offset-md-3">
                     <div className="card card-body">

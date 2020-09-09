@@ -27,7 +27,7 @@ const Navbar = (props) => {
                                 <NavLink className="nav-link"  to="/Post">Post</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link"  to="/community">community</NavLink>
+                                <NavLink className="nav-link"  to="/community">Community</NavLink>
                             </li>
                             <li className="nav-item">
                                 <span onClick={props.handleLogout} className="nav-link logout-link">Logout</span>
