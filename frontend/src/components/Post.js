@@ -7,6 +7,7 @@ const Post = (props) =>{
     let [title, setTitle] = useState('')
     let [content, setContent] = useState('')
     let [category, setCategory] = useState('')
+    let [image, setImage] = useState("")
 
 
     // useEffect(()=>{
@@ -28,6 +29,9 @@ const Post = (props) =>{
     const handleCategory = (e) =>{
         setCategory(e.target.value)
     }
+    const handleImage = (e) => {
+        setImage(e.target.value)
+    }
     const handleSubmit = (e) =>{
         e.preventDefault()
         const newpost = {title, content, category}
@@ -40,18 +44,23 @@ const Post = (props) =>{
             }),
             headers:{
                 'Content-Type': 'application/json',
-                "Authorization":"Bearer "+localStorage.getItem("jwt")
+                'Authorization':'Bearer '+localStorage.getItem('jwt')
             }
         })
-       
-        .then(res => console.log(res.data) )
-    .catch(error => console.log(error));
-    }
-        
+        .then(res => {
+            setTitle(res.data.title)
+            setContent(res.data.content)
+            setCategory(res.data.category)
+            console.log(res.data) 
+        })
+    .catch(error => console.log(error))
+    }   
     return(
         <div>
             <h1>Post Your Things:</h1>
-            
+            <p>title: {title}</p>
+            <p>Content: {content}</p>
+            <p>Category: {category}</p>
             <div className="row mt-4">
                 <div className="col-md-7 offset-md-3">
                     <div className="card card-body">
@@ -67,7 +76,11 @@ const Post = (props) =>{
                             <div className="form-group">
                                 <label htmlFor="content">Content</label>
                                 <input type="text" content="content" value={content} onChange={handleContent} className="form-control"/>
-                            </div> 
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="image">Image</label>
+                                <input type="file" image="image" value={image} onChange={handleImage} className="form-control"/>
+                            </div>  
                             <button type="submit" className="btn btn-primary float-right">Submit</button>                           
                         </form>
                     </div>
