@@ -8,7 +8,7 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 import About from './components/About';
-// import Community from './components/Community'
+import Community from './components/Community'
 import Post from './components/Post'
 import Footer from './components/Footer';
 import './App.css';
@@ -60,9 +60,9 @@ function App() {
             render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 
           />
           <Route path="/about" component={ About } />
-          <PrivateRoute path="/profile" component={ Profile } user={currentUser} />
+          <PrivateRoute path="/profile" component={ Profile } user={currentUser} nowCurrentUser={nowCurrentUser} />
           <PrivateRoute path="/post" component={ Post } user={currentUser} />
-          {/* <PrivateRoute path="/community" component={ Community } user={currentUser} /> */}
+          <PrivateRoute path="/community" component={ Community } user={currentUser} />
           <Route exact path="/" component={ Welcome } />
         </Switch>
       </div>
