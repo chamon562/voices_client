@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
-const Post = (props) =>{
+
+
+const PostForm = (props) =>{
     const userData = props.user
     let [title, setTitle] = useState('')
     let [content, setContent] = useState('')
@@ -21,16 +22,14 @@ const Post = (props) =>{
         const newPost = {title, category, content}
         axios.post(`${REACT_APP_SERVER_URL}/api/posts/newpost`, newPost)
         .then(response => {
-            console.log(response);
+            console.log(response.data);
         })
         .catch(error => console.log(error));
     }
     return(
+
         <div>
             <h1>Post Your Things:</h1>
-            <h2>{props.title}</h2>
-            <h2>{props.category}</h2>
-            <h2>{props.content}</h2>
             <div className="row mt-4">
                 <div className="col-md-7 offset-md-3">
                     <div className="card card-body">
@@ -55,4 +54,4 @@ const Post = (props) =>{
         </div>
     )
 }
-export default Post
+export default PostForm
