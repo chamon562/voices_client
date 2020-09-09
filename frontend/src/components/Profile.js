@@ -43,14 +43,14 @@ const Profile = (props) => {
       <p>
         <strong>Email: </strong> {props.user.email}
       </p>
-      <p>
+      {/* <p>
         <strong>ID: </strong>
         {props.user.id}
-      </p>
+      </p> */}
       <p>content: {props.user.content}</p>
       <p>birthday: {props.user.birthday}</p>
       <p>artist type: {props.user.artistType}</p>
-      {props.user.bio ? props.user.bio : form}
+      {props.user.bio ? <h3>About Me: <br/>{props.user.bio}</h3> : form}
     </div>
   ) : (
     <h4>Loading ...</h4>
