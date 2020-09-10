@@ -9,7 +9,7 @@ import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 import About from './components/About';
 import Community from './components/Community'
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import './App.css';
 // user needs to be logged in to see this route
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -64,7 +64,7 @@ function App() {
           <Route exact path="/" component={ Welcome } />
         </Switch>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
