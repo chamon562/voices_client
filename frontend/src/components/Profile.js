@@ -101,6 +101,7 @@ const Profile = (props) => {
           <input onChange={handlePicChange} required type="file" name="imageUrl" />
           <input type="submit" class="btn btn-primary" />
         </form>
+        
       }
       <p>
         <strong>Name: </strong> {props.user.name}

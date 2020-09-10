@@ -31,6 +31,7 @@ const PostForm = (props) =>{
         .then(response => {
             console.log(response.data);
             setRedirect(true)
+            window.location.reload(false)
             
         })
         
