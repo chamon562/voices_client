@@ -1,24 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const Post = (props) =>{
+
+const PostForm = (props) =>{
     
     let [title, setTitle] = useState('')
     let [content, setContent] = useState('')
     let [category, setCategory] = useState('')
     let [image, setImage] = useState("")
+    let [redirect, setRedirect] = useState(false);
 
-
-    // useEffect(()=>{
-    //     axios.get(`${REACT_APP_SERVER_URL}/api/posts/post`)
-    //     .then(response=>{
-    //         console.log(response.data)
-    //         setTitle(response.data.title)
-    //         setContent(response.data.content)
-    //         setCategory(response.data.category)
-    //     })
-    // }) 
 
     const handleTitle = (e) =>{
         setTitle(e.target.value)
@@ -34,33 +27,23 @@ const Post = (props) =>{
     }
     const handleSubmit = (e) =>{
         e.preventDefault()
-        const newpost = {title, content, category}
-        axios.post(`${REACT_APP_SERVER_URL}/api/posts/newpost`, newpost, {
-            method: "POST", 
-            body: JSON.stringify({
-                title,
-                content,
-                category
-            }),
-            headers:{
-                'Content-Type': 'application/json',
-                'Authorization':'Bearer '+localStorage.getItem('jwt')
-            }
+        const post = {title, category, content}
+        axios.post(`${REACT_APP_SERVER_URL}/api/posts/newpost`, post)
+        .then(response => {
+            console.log(response.data);
+            setRedirect(true)
+            
         })
-        .then(res => {
-            setTitle(res.data.title)
-            setContent(res.data.content)
-            setCategory(res.data.category)
-            console.log(res.data) 
-        })
-    .catch(error => console.log(error))
+        
     }   
+    
+    if(redirect) return <Redirect to="/Community" />
+    
     return(
+
         <div>
             <h1>Post Your Things:</h1>
-            <p>title: {title}</p>
-            <p>Content: {content}</p>
-            <p>Category: {category}</p>
+            
             <div className="row mt-4">
                 <div className="col-md-7 offset-md-3">
                     <div className="card card-body">
@@ -89,4 +72,4 @@ const Post = (props) =>{
         </div>
     )
 }
-export default Post
+export default PostForm
