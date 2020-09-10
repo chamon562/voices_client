@@ -14,7 +14,7 @@ const Community = (props) =>{
         .then(res=>{
             console.log(res.data.post)
            let tempComPosts =  res.data.post.map((p, index) =>{
-                return <Post post={p} key={index}/>
+                return <Post post={p} key={index} user={props.user}/>
             }) 
             setComPosts(tempComPosts)
         })

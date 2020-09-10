@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-
+import CommentForm from './CommentForm'
 
 const Post = (props) =>{
     return(
@@ -7,10 +7,8 @@ const Post = (props) =>{
             <h3>title: {props.post.title}</h3>
             <h3>category: {props.post.category}</h3>
             <h3>content: {props.post.content}</h3>
-            <form>
-                <input type="text"/>
-                <button></button>
-            </form>
+            {/* render comment form  */}
+           <CommentForm user={props.user} post={props.post}/>
         </div>
     )
 }
