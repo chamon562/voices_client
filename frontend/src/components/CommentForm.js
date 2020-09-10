@@ -5,7 +5,7 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 
 const CommentForm = (props) =>{
-    console.log(props)
+    // console.log(props)
     let [content, setContent] = useState('')
     let [redirect, setRedirect] = useState(false);
 
@@ -20,13 +20,13 @@ const CommentForm = (props) =>{
         .then(response => {
             console.log(response.data);
             setRedirect(true)
-            // window.location.reload(false)
-            
+        //    console.log(redirect) 
+            window.location.reload(false)
         })
         
     }   
-    
-    if(redirect) return <Redirect to="/Community" />
+    // console.log(redirect)
+    if(redirect) return <Redirect to="/community" />
     
     return(
 
