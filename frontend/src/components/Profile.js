@@ -17,9 +17,10 @@ const Profile = (props) => {
     axios.get(`${REACT_APP_SERVER_URL}/api/users/current`)
     .then(response => {
       console.log(response.data)
-      console.log(user)
+      setUser(response.data)
+      // console.log(user)
     })
-  },[user])
+  },[])
 
   const uploadImage = async () => {
     
