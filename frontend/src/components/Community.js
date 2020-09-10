@@ -1,21 +1,26 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import PostForm from '../components/PostForm'
+import Post from '../components/Post'
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Community = (props) =>{
-    let [title, setTitle] = useState('')
-    let [content, setContent] = useState('')
-    let [category, setCategory] = useState('')
-    useEffect(()=>{
+    let [comPosts, setComPosts] = useState('')
+    // let [title, setTitle] = useState('')
+    // let [content, setContent] = useState('')
+    // let [category, setCategory] = useState('')
+    
+    
+    useEffect((props)=>{
         axios.get(`${REACT_APP_SERVER_URL}/api/posts/post` )
         .then(res=>{
-            console.log(res.data.post[0].title)
-                setTitle(res.data.post[0].title)
-                setContent(res.data.post[0].content)
-                setCategory(res.data.post[0].category)
+            console.log(res.data)
+            let temComPosts = res.data.post.map((p, index)=>{
+                return <Post post={p} key={index} />
+            })
+            setComPosts(temComPosts)
         })
-    }) 
+    },[]) 
     
 
     
@@ -50,11 +55,8 @@ const Community = (props) =>{
         <div>
             <h1>Community Page</h1>
             <PostForm user={props.user}/>
-            <div>
-                <p>title: {title}</p>
-                <p>content: {content}</p>
-                <p>category: {category}</p>
-            </div>
+            {comPosts ? comPosts : <></>}
+            
             
             {/* <form onSubmit={handleSubmit}> */}
                 {/* <div>
