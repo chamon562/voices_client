@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 
 const PostForm = (props) =>{
-    const userData = props.user
+    
     let [title, setTitle] = useState('')
     let [content, setContent] = useState('')
     let [category, setCategory] = useState('')
+    let [image, setImage] = useState("")
+    let [redirect, setRedirect] = useState(false);
+
+
     const handleTitle = (e) =>{
         setTitle(e.target.value)
     }
@@ -17,19 +22,28 @@ const PostForm = (props) =>{
     const handleCategory = (e) =>{
         setCategory(e.target.value)
     }
+    const handleImage = (e) => {
+        setImage(e.target.value)
+    }
     const handleSubmit = (e) =>{
         e.preventDefault()
-        const newPost = {title, category, content}
-        axios.post(`${REACT_APP_SERVER_URL}/api/posts/newpost`, newPost)
+        const post = {title, category, content}
+        axios.post(`${REACT_APP_SERVER_URL}/api/posts/newpost`, post)
         .then(response => {
             console.log(response.data);
+            setRedirect(true)
+            
         })
-        .catch(error => console.log(error));
-    }
+        
+    }   
+    
+    if(redirect) return <Redirect to="/Community" />
+    
     return(
 
         <div>
             <h1>Post Your Things:</h1>
+            
             <div className="row mt-4">
                 <div className="col-md-7 offset-md-3">
                     <div className="card card-body">
@@ -45,7 +59,11 @@ const PostForm = (props) =>{
                             <div className="form-group">
                                 <label htmlFor="content">Content</label>
                                 <input type="text" content="content" value={content} onChange={handleContent} className="form-control"/>
-                            </div> 
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="image">Image</label>
+                                <input type="file" image="image" value={image} onChange={handleImage} className="form-control"/>
+                            </div>  
                             <button type="submit" className="btn btn-primary float-right">Submit</button>                           
                         </form>
                     </div>
