@@ -1,38 +1,73 @@
 import React, {useState, useEffect} from 'react'
+import axios from 'axios';
 import PostForm from '../components/PostForm'
-import axios from 'axios'
+import Post from '../components/Post'
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Community = (props) =>{
-    const [loading, setLoading] = useState(false)
-    const[ posts, setPosts]= useState([])
-    
-    const getPosts = () =>{
-        let url = process.env.REACT_APP_SERVER_URL
-        axios.get(`${url}/api/posts/`)
-        .then(res => {
-            setLoading(false)
-            console.log(res.data)
-            setPosts(res.data.results)
+    let [comPosts, setComPosts] = useState(undefined)
+    // let [title, setTitle] = useState('')
+    // let [content, setContent] = useState('')
+    // let [category, setCategory] = useState('')
+    useEffect(()=>{
+        axios.get(`${REACT_APP_SERVER_URL}/api/posts/post` )
+        .then(res=>{
+            console.log(res.data.post)
+           let tempComPosts =  res.data.post.map((p, index) =>{
+                return <Post post={p} key={index}/>
+            }) 
+            setComPosts(tempComPosts)
         })
-        .catch(error => console.log(error))
+    }, []) 
+    
 
-    }
+    
+    // let [comments, setComments] = useState('')
 
-    useEffect(() => {
-        
-    }, [])
+    // const handleComments = (e) => {
+    //     setComments(e.target.value)
+    // }
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     const comment = {comments}
+    //     axios.post(`${REACT_APP_SERVER_URL}/api/comments/new`, comment, {
+    //         method: "POST",
+    //         body: JSON.stringify({
+    //             comments
+    //         }),
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Authorization': 'Bearer '+localStorage.getItem('jwt')
+                
+    //         }
+    //         .then(res =>{
+    //             setComments(res.data.comments)
+    //         })
+    //         .catch(err => 
+    //             console.log(err))
+    //     })
+    // }
 
     return(
         <div>
             <h1>Community Page</h1>
+            <PostForm user={props.user}/>
+            {comPosts ? comPosts : <> </>}
             <div>
-                <PostForm user={props.user}/>
+                {/* <p>title: {title}</p>
+                <p>content: {content}</p>
+                <p>category: {category}</p> */}
             </div>
-            <div>
-                <h1>Posts</h1>
-            </div>
-        </div>
+            
+            {/* <form onSubmit={handleSubmit}> */}
+                {/* <div>
+                    <label htmlFor="">Comment</label>
+                    <input type="text" comments="comments" value={comments} onChange={handleComments} />
+                    <button type="submit" className="btn btn-primary float-right">Submit</button>
+                </div>
+            </form> */}
+        </div>    
     )
 }
-
-export default Community
+export default Community 
