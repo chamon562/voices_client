@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
-
 
 const PostForm = (props) =>{
     const userData = props.user
     let [title, setTitle] = useState('')
     let [content, setContent] = useState('')
     let [category, setCategory] = useState('')
+    let [redirect, setRedirect] = useState(false)
+
+
     const handleTitle = (e) =>{
         setTitle(e.target.value)
     }
@@ -20,11 +23,18 @@ const PostForm = (props) =>{
     const handleSubmit = (e) =>{
         e.preventDefault()
         const newPost = {title, category, content}
+        console.log(newPost)
         axios.post(`${REACT_APP_SERVER_URL}/api/posts/newpost`, newPost)
         .then(response => {
             console.log(response.data);
+            setRedirect(true)
         })
         .catch(error => console.log(error));
+    }
+    if(redirect){
+        return(
+            <Redirect to='/community'/>
+        )
     }
     return(
 

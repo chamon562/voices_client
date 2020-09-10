@@ -24,7 +24,7 @@ const Navbar = (props) => {
                                 <NavLink className="nav-link"  to="/profile">Profile</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link"  to="/Post">Post</NavLink>
+                                <NavLink className="nav-link"  to="/newpost">Post</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link"  to="/community">community</NavLink>
