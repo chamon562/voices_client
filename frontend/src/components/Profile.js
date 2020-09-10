@@ -13,7 +13,7 @@ const Profile = (props) => {
   const [loading, setLoading] = useState(false)
 
   const uploadImage = async () => {
-  
+    
     console.log(image)
     const formData = new FormData()
     formData.append('file', image)

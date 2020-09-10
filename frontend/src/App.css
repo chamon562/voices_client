@@ -4,6 +4,7 @@ html {
 }
 body {
   margin-bottom: 60px; /* Margin bottom by footer height */
+  background-image: url(https://p0.pikist.com/photos/183/378/parchment-dirty-retro-sooty-antique-paper-background-backdrop-urban.jpg);
 }
 .footer {
   position: absolute;

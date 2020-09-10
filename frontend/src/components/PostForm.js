@@ -20,6 +20,7 @@ const PostForm = (props) =>{
     const handleSubmit = (e) =>{
         e.preventDefault()
         const newPost = {title, category, content}
+        // console.log(newPost)
         axios.post(`${REACT_APP_SERVER_URL}/api/posts/newpost`, newPost)
         .then(response => {
             console.log(response.data);
