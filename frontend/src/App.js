@@ -9,6 +9,7 @@ import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 import About from './components/About';
 import Community from './components/Community'
+
 // import Footer from './components/Footer';
 import './App.css';
 // user needs to be logged in to see this route
@@ -63,7 +64,7 @@ function App() {
           <PrivateRoute path="/profile" component={ Profile } user={currentUser} nowCurrentUser={nowCurrentUser} />
 
           <Route path="/community" render={() => <Community  user={currentUser} nowCurrentUser={nowCurrentUser}/>}/>
-
+            
           <Route exact path="/" component={ Welcome } />
         </Switch>
       </div>
