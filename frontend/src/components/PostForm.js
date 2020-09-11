@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-
 const PostForm = (props) =>{
     
     let [title, setTitle] = useState('')

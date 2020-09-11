@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -8,9 +8,19 @@ const path = require('path')
 // cloudinary.config(process.env.CLOUDINARY_URL)
 
 const Profile = (props) => {
+  const [user, setUser] = useState(props.user)
   const [bioInput, setBioInput] = useState("");
   const [image, setImage] = useState("")
   const [loading, setLoading] = useState(false)
+  
+  useEffect(()=>{
+    axios.get(`${REACT_APP_SERVER_URL}/api/users/current`)
+    .then(response => {
+      console.log(response.data)
+      setUser(response.data)
+      // console.log(user)
+    })
+  },[])
 
   const uploadImage = async () => {
     
@@ -46,21 +56,24 @@ const Profile = (props) => {
   //   console.log
   // }
   // console.log('Line 4 Profile.js Front end',props)
-  const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      const updatedBio = await axios.put(
-        `${REACT_APP_SERVER_URL}/api/users/${props.user.id}`,
-        {
-          bio: bioInput,
-        }
-      );
-      props.nowCurrentUser(updatedBio.data);
-      // have a way to store whatever is being typed into the input box
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(bioInput)
+    // console.log(props.user)
+    axios.put(`${REACT_APP_SERVER_URL}/api/users/${props.user.id}`, {bioInput})
+    .then(response => {
+      setUser(response.data)
+
+      // console.log(response)
+    })
+    .catch(error=>{
+      console.log("error", error)
+    })
+    
+
+
+  }
+  
 
   const form = (
     <div>
@@ -71,7 +84,7 @@ const Profile = (props) => {
           type="text"
           onChange={(event) => setBioInput(event.target.value)}
         ></input>
-        <button type="submit">Submit</button>
+        <button type="Post">Submit</button>
       </form>
     </div>
   );
@@ -115,7 +128,9 @@ const Profile = (props) => {
       {props.user.bio ? (
         <h3>
           About Me: <br />
-          {props.user.bio}
+          {/* {bioInput} */}
+          {user.bio}
+        {form}
         </h3>
       ) : (
         form
