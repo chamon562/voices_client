@@ -50,7 +50,7 @@ const Community = (props) =>{
     // }
 
     return(
-        <div>
+        <div className="posts">
             <h1>Community Page</h1>
             <PostForm user={props.user}/>
             {comPosts ? comPosts : <> </>}
