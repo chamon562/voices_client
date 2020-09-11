@@ -7,9 +7,6 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const Community = (props) =>{
     console.log(props)
     let [comPosts, setComPosts] = useState(undefined)
-    // let [title, setTitle] = useState('')
-    // let [content, setContent] = useState('')
-    // let [category, setCategory] = useState('')
     useEffect(()=>{
         
         axios.get(`${REACT_APP_SERVER_URL}/api/posts/post` )
@@ -27,12 +24,8 @@ const Community = (props) =>{
     return(
         <div className="post">
             <h1>Community Page</h1>
-
-            <PostForm user={props.user}/>
-
-            {comPosts ? comPosts : <></>}
-            
-
+            <PostForm user={props.location.state?props.location.state.user:props.user}/>
+            {comPosts ? comPosts : <> </>}  
 
         </div>    
     )

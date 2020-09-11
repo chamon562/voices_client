@@ -37,17 +37,12 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const Post = (props) => {
     const userData = props.user
     const post = props.post
-   
-    
-
-    // let [del, setDel] = useState('')
     let [redirect, setRedirect] = useState(false);
 
     const [open, setOpen] = React.useState(false);
     // const classes = useStyles();
     // getModalStyle is not a pure function, we roll the style only on the first render
     // const [modalStyle] = React.useState(getModalStyle);
-
 
     const handleOpen = () => {
       setOpen(true);
@@ -63,7 +58,6 @@ const Post = (props) => {
     
     const handleDelete = (e) => {
         e.preventDefault()
-        // setDel(e.target.value)
         axios.delete(`${REACT_APP_SERVER_URL}/api/posts/${props.post._id}`,{
             method: "DELETE"
         })
@@ -73,34 +67,38 @@ const Post = (props) => {
             window.location.reload(false)
         })
     }
-    if(redirect) return <Redirect to="/community" />
-// 
-    return(
-        <div className="posts">
-            <button onClick={handleOpen}>{props.post.title}</button>
-            <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-            >
-            <div className="modals" >
-                <h3 className="title">title: {props.post.title}</h3>
-                <h3 className="content">content: {props.post.content}</h3>
-                <h3 className="category">category: {props.post.category}</h3>
-                {props.currentUser ? 
-                <button onClick={handleDelete}>Delete Post</button>
-                :
-                <></>
-                }
-                <div className="commlist">
-                {commentList ? commentList : <> </>}
+    if(redirect) return <Redirect to="/community" /> 
+    
+      return(
+        <div>
+            <div className="posts">
+                <button onClick={handleOpen}>{props.post.title}</button>
+                <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+                >       
+                <div className="modals" >
+                    <h3 className="modals">title: {props.post.title}</h3>
+                    <h3 className="content">content: {props.post.content}</h3>
+                    <h3 className="category">category: {props.post.category}</h3>
+                    {console.log(props.post.postedBy)}
+                    {console.log(userData)}
+                    { post.postedBy._id === userData.id ? 
+                    <button onClick={handleDelete}>Delete Post</button>
+                    : 
+                    <></> 
+                    } 
+                        <div className="commlist">
+                            {commentList ? commentList : <> </>}
+                        </div>
+                        <div className="form">
+                            <CommentForm user={props.user} post={props.post}/>
+                         </div>
                 </div>
-                <div className="form">
-            <CommentForm user={props.user} post={props.post} />
-                </div>
+                </Modal>
             </div>
-            </Modal>
 
         </div>
     )
