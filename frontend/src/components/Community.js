@@ -5,22 +5,21 @@ import Post from '../components/Post'
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Community = (props) =>{
-    let [comPosts, setComPosts] = useState('')
+    console.log(props)
+    let [comPosts, setComPosts] = useState(undefined)
     // let [title, setTitle] = useState('')
     // let [content, setContent] = useState('')
     // let [category, setCategory] = useState('')
-    
-    
-    useEffect((props)=>{
+    useEffect(()=>{
         axios.get(`${REACT_APP_SERVER_URL}/api/posts/post` )
         .then(res=>{
-            console.log(res.data)
-            let temComPosts = res.data.post.map((p, index)=>{
-                return <Post post={p} key={index} />
-            })
-            setComPosts(temComPosts)
+            console.log(res.data.post)
+           let tempComPosts =  res.data.post.map((p, index) =>{
+                return <Post post={p} key={index} user={props.user}/>
+            }) 
+            setComPosts(tempComPosts)
         })
-    },[]) 
+    }, []) 
     
 
     
@@ -55,8 +54,12 @@ const Community = (props) =>{
         <div>
             <h1>Community Page</h1>
             <PostForm user={props.user}/>
-            {comPosts ? comPosts : <></>}
-            
+            {comPosts ? comPosts : <> </>}
+            <div>
+                {/* <p>title: {title}</p>
+                <p>content: {content}</p>
+                <p>category: {category}</p> */}
+            </div>
             
             {/* <form onSubmit={handleSubmit}> */}
                 {/* <div>

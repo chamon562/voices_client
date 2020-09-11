@@ -27,7 +27,7 @@ const PostForm = (props) =>{
     }
     const handleSubmit = (e) =>{
         e.preventDefault()
-        const post = {title, category, content}
+        const post = {user: props.user, title, category, content}
         axios.post(`${REACT_APP_SERVER_URL}/api/posts/newpost`, post)
         .then(response => {
             console.log(response.data);
@@ -38,7 +38,7 @@ const PostForm = (props) =>{
         
     }   
     
-    if(redirect) return <Redirect to="/Community" />
+    if(redirect) return <Redirect to="/community" />
     
     return(
 
