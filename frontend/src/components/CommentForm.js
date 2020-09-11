@@ -15,6 +15,7 @@ const CommentForm = (props) =>{
     }
     const handleSubmit = (e) =>{
         e.preventDefault()
+        console.log(props)
         const comment = {user: props.user, content, post: props.post}
         axios.post(`${REACT_APP_SERVER_URL}/api/comments/${props.post._id}/new`, comment)
         .then(response => {

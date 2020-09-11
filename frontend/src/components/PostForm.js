@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-
 const PostForm = (props) =>{
     
     let [title, setTitle] = useState('')
@@ -61,10 +60,6 @@ const PostForm = (props) =>{
                                 <label htmlFor="content">Content</label>
                                 <input type="text" content="content" value={content} onChange={handleContent} className="form-control"/>
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="image">Image</label>
-                                <input type="file" image="image" value={image} onChange={handleImage} className="form-control"/>
-                            </div>  
                             <button type="submit" className="btn btn-primary float-right">Submit</button>                           
                         </form>
                     </div>

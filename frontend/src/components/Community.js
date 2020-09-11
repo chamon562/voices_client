@@ -11,7 +11,7 @@ const Community = (props) =>{
     // let [content, setContent] = useState('')
     // let [category, setCategory] = useState('')
     useEffect(()=>{
-
+        
         axios.get(`${REACT_APP_SERVER_URL}/api/posts/post` )
         .then(res=>{
             console.log(res.data.post)
