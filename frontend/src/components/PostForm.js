@@ -42,7 +42,7 @@ const PostForm = (props) =>{
     return(
 
         <div>
-            <h1>Post Your Things:</h1>
+            <h4>where you can share your post</h4>
             
             <div className="row mt-4">
                 <div className="col-md-7 offset-md-3">
