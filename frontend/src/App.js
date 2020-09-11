@@ -45,6 +45,7 @@ function App() {
       setCurrentUser(null);
       setIsAuthenticated(false);
     }
+    return <Redirect to='/login' />
   }
   console.log('Current User', currentUser);
   console.log('Authenicated', isAuthenticated);
@@ -60,7 +61,9 @@ function App() {
           />
           <Route path="/about" component={ About } />
           <PrivateRoute path="/profile" component={ Profile } user={currentUser} nowCurrentUser={nowCurrentUser} />
-          <PrivateRoute path="/community" component={ Community } user={currentUser} />
+
+          <Route path="/community" render={() => <Community  user={currentUser} nowCurrentUser={nowCurrentUser}/>}/>
+
           <Route exact path="/" component={ Welcome } />
         </Switch>
       </div>
