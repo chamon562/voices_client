@@ -20,11 +20,13 @@ const Community = (props) =>{
         })
     }, [props]) 
     
+
     return(
         <div className="post">
             <h1>Community Page</h1>
             <PostForm user={props.location.state?props.location.state.user:props.user}/>
             {comPosts ? comPosts : <> </>}  
+
         </div>    
     )
 }
