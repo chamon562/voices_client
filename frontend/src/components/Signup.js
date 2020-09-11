@@ -40,7 +40,7 @@ const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password === confirmPassword) {
-            const newUser = { name, email, password, artistType, bio, content, birthday }
+            const newUser = { name, email, password, artistType, content, birthday }
                         // connecting to the backend server 
             axios.post(`${REACT_APP_SERVER_URL}/api/users/register`, newUser)
             .then(response => {
