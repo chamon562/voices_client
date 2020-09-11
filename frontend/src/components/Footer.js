@@ -4,7 +4,7 @@ const Footer = () =>{
     return(
         <footer className="footer bg-dark">
             <div className="container text-center">
-                <span className="text-muted">@2020 Built with MERN(affected by COVID)</span>
+                <span className="text-muted">@2020 voiceS app, Built with MERN, Const By = ["Nick Phillips", "Phillip Yap", "Channee Math"]</span>
             </div>
         </footer>
     )

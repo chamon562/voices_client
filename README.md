@@ -162,18 +162,46 @@ Standup 12:00PM
 
 ## September 7, 2020 Monday (Labor Day)
 Standup 12:00PM
-Work TBD based off Standup
+# p3 Goals
+-    Work out profile page
+-    Work out post in front end
+# p3 Progression
+-    Able to practice git hub things. pushing and pulling up stream and merging.
+-    Getting together Profile page 
+-    Visuals on comment and post 
+# p3 Road Blocoks
+-    working on functionality 
+
 
 ## September 8, 2020 Tuesday
-Standup 7:00PM
+Standup 9:00PM
+# p3 Goals
+-   To be able to create update and delete bio, post, and comments.
+-   Work on getting the functionality down for our pages
+# p3 Progression
+-   Able to have user add bio if they already havent. Has turnerary created to say if bio already exist show it, if not here is the form with submit for user to create a bio about them selves. 
+-   able to post
+# p3 Road Blocoks
+-   Giving user to upload a profile picture 
 Work TBD based off Standup
 
 ## September 9, 2020 Wednesday
 Standup 9:00AM
+# p3 Goals
+- working out post and comments section
+- have user be able to upload a profile picture
+# p3 Progression
+
+
+# p3 Road Blocoks
+- working in cloudinary.
 Work TBD based off Standup
 
 ## September 10, 2020 Thursday (Deployment)
 Standup 9:00AM
+# p3 Goals
+# p3 Progression
+# p3 Road Blocoks
 Work TBD based off Standup
 
 ## September 11, 2020 Friday (Presentations) \n yebb.
@@ -198,3 +226,38 @@ What data will we store?
 What routes will we have?
 [ ] Setup Client
 [ ] DEPLOY it like its HAWT!
+
+
+
+## mabe use later for cloudinary has 400 error POST in profile.js
+const [image, setImage] = useState("")
+  const [loading, setLoading] = useState(false)
+
+
+  const uploadImage = async (event) =>{
+    const files = event.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset', 'ml_default')
+    setLoading(true)
+    const res = await fetch('https://api.cloudinary.com/v1_1/chamon562/image/upload', 
+      {
+      method: 'POST',
+      body: data
+      }
+    )
+    const file = await res.json()
+    setImage(file.secure_url)
+    setLoading(false)
+  }
+
+
+  inside user data
+
+   <input type="file"
+       name="file"
+       placeholder="Upload an image"
+       onChange={uploadImage}
+     />
+      {loading ? (<h3>loading...</h3>)
+      : (<img src={image} style={{width:'200px'}} />)}

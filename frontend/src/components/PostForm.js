@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-
 const PostForm = (props) =>{
     
     let [title, setTitle] = useState('')
@@ -27,10 +26,10 @@ const PostForm = (props) =>{
     }
     const handleSubmit = (e) =>{
         e.preventDefault()
-        const post = {title, category, content}
+        const post = {user: props.user, title, category, content}
         axios.post(`${REACT_APP_SERVER_URL}/api/posts/newpost`, post)
         .then(response => {
-            console.log(response.data);
+            // console.log(response.data)
             setRedirect(true)
             window.location.reload(false)
             

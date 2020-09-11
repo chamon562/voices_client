@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
+import CommentForm from './CommentForm'
+import Comment from './Comment'
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Post = (props) => {
@@ -22,7 +24,9 @@ const Post = (props) => {
         })
     }
     if(redirect) return <Redirect to="/Community" />
-
+   let commentList = props.post.comments.map((comment, index) =>{
+        return <Comment comment={comment} key={index} user={props.user} />
+    })
 
     return(
         <div>
@@ -34,6 +38,9 @@ const Post = (props) => {
             :
             <></>
             }
+        {commentList ? commentList : <> </>}
+           <CommentForm user={props.user} post={props.post}/>
+
         </div>
     )
 }

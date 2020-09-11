@@ -5,6 +5,7 @@ import Post from '../components/Post'
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Community = (props) =>{
+
     let [comPosts, setComPosts] = useState('')
     // let [title, setTitle] = useState('')
     // let [content, setContent] = useState('')
@@ -55,8 +56,10 @@ const Community = (props) =>{
         <div>
             <h1>Community Page</h1>
             <PostForm user={props.user}/>
+
             {comPosts ? comPosts : <></>}
             
+
             
             {/* <form onSubmit={handleSubmit}> */}
                 {/* <div>
