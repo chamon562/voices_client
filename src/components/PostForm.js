@@ -33,7 +33,8 @@ const PostForm = (props) =>{
     if(redirect) return <Redirect to={{ pathname:"/community", state: {user:props.user} }} />
     return(
         <div>
-            <h1>Post Your Things:</h1>
+            <h4>where you can share your post</h4>
+            
             <div className="row mt-4">
                 <div className="col-md-7 offset-md-3">
                     <div className="card card-body">

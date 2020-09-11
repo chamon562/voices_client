@@ -25,7 +25,7 @@ const CommentForm = (props) =>{
     if(redirect) return <Redirect to="/community" />
     return(
         <div>
-            <h1>Leave a Comment</h1>
+            
             <div className="row mt-4">
                 <div className="col-md-7 offset-md-3">
                     <div className="card card-body">
