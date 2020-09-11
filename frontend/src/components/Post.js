@@ -25,7 +25,7 @@ const Post = (props) => {
     }
     if(redirect) return <Redirect to="/Community" />
    let commentList = props.post.comments.map((comment, index) =>{
-        return <Comment comment={comment} key={index} user={props.user} />
+        return <Comment comment={comment} key={index}  user={props.user}/>
     })
 
     return(
@@ -39,7 +39,7 @@ const Post = (props) => {
             <></>
             }
         {commentList ? commentList : <> </>}
-           <CommentForm user={props.user} post={props.post}/>
+           <CommentForm user={props.user} post={props.post} />
 
         </div>
     )

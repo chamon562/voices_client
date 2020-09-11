@@ -12,12 +12,12 @@ const Community = (props) =>{
     // let [category, setCategory] = useState('')
     
     
-    useEffect((props)=>{
+    useEffect(()=>{
         axios.get(`${REACT_APP_SERVER_URL}/api/posts/post` )
         .then(res=>{
             console.log(res.data)
             let temComPosts = res.data.post.map((p, index)=>{
-                return <Post post={p} key={index} />
+                return <Post user={props.user}  post={p} key={index} />
             })
             setComPosts(temComPosts)
         })
