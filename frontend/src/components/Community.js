@@ -3,34 +3,27 @@ import axios from 'axios';
 import PostForm from '../components/PostForm'
 import Post from '../components/Post'
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
-
 const Community = (props) =>{
-
-    let [comPosts, setComPosts] = useState('')
+    console.log(props)
+    let [comPosts, setComPosts] = useState(undefined)
     // let [title, setTitle] = useState('')
     // let [content, setContent] = useState('')
     // let [category, setCategory] = useState('')
-    
-    
     useEffect(()=>{
         axios.get(`${REACT_APP_SERVER_URL}/api/posts/post` )
         .then(res=>{
-            console.log(res.data)
-            let temComPosts = res.data.post.map((p, index)=>{
-                return <Post user={props.user}  post={p} key={index} />
+            // console.log(res.data.post)
+            // console.log(props)
+           let tempComPosts = res.data.post.map((p, index) =>{
+                return <Post post={p} key={index} user={props.location.state?props.location.state.user:props.user}/>
             })
-            setComPosts(temComPosts)
+            setComPosts(tempComPosts)
         })
-    },[]) 
-    
-
-    
+    }, [props]) 
     // let [comments, setComments] = useState('')
-
     // const handleComments = (e) => {
     //     setComments(e.target.value)
     // }
-
     // const handleSubmit = (e) => {
     //     e.preventDefault()
     //     const comment = {comments}
@@ -42,7 +35,6 @@ const Community = (props) =>{
     //         headers: {
     //             'Content-Type': 'application/json',
     //             'Authorization': 'Bearer '+localStorage.getItem('jwt')
-                
     //         }
     //         .then(res =>{
     //             setComments(res.data.comments)
@@ -51,16 +43,16 @@ const Community = (props) =>{
     //             console.log(err))
     //     })
     // }
-
     return(
         <div>
             <h1>Community Page</h1>
-            <PostForm user={props.user}/>
-
-            {comPosts ? comPosts : <></>}
-            
-
-            
+            <PostForm user={props.location.state?props.location.state.user:props.user}/>
+            {comPosts ? comPosts : <> </>}
+            <div>
+                {/* <p>title: {title}</p>
+                <p>content: {content}</p>
+                <p>category: {category}</p> */}
+            </div>
             {/* <form onSubmit={handleSubmit}> */}
                 {/* <div>
                     <label htmlFor="">Comment</label>

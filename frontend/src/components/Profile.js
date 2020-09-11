@@ -4,15 +4,13 @@ import axios from "axios";
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const path = require('path')
 // const cloudinary = require('cloudinary')
-
 // cloudinary.config(process.env.CLOUDINARY_URL)
-
 const Profile = (props) => {
+  console.log(props)
   const [user, setUser] = useState(props.user)
   const [bioInput, setBioInput] = useState("");
   const [image, setImage] = useState("")
   const [loading, setLoading] = useState(false)
-  
   useEffect(()=>{
     axios.get(`${REACT_APP_SERVER_URL}/api/users/current`)
     .then(response => {
@@ -21,9 +19,7 @@ const Profile = (props) => {
       // console.log(user)
     })
   },[])
-
   const uploadImage = async () => {
-    
     console.log(image)
     const formData = new FormData()
     formData.append('file', image)
@@ -39,19 +35,12 @@ const Profile = (props) => {
     catch(error){
       console.log(error)
     }
-    
-
-    
-
     setLoading(false)
   }
-  
   // const handleFile = async (e) =>{  
   //   const file = e.target.files[0]
   //   console.log(e.target.files[0])
-    
   // }
-
   // const handleUpload = aync (e) =>{
   //   console.log
   // }
@@ -63,18 +52,12 @@ const Profile = (props) => {
     axios.put(`${REACT_APP_SERVER_URL}/api/users/${props.user.id}`, {bioInput})
     .then(response => {
       setUser(response.data)
-
       // console.log(response)
     })
     .catch(error=>{
       console.log("error", error)
     })
-    
-
-
   }
-  
-
   const form = (
     <div>
       <h5>New Artist? say something about you.</h5>
@@ -88,11 +71,9 @@ const Profile = (props) => {
       </form>
     </div>
   );
-
   const handlePicChange = (e) => {
     setImage(e.target.value)
   }
-
   const handlePicSubmit = (e) => {
     e.preventDefault()
     console.log(image)
@@ -104,24 +85,15 @@ const Profile = (props) => {
     //   console.log(error)
     // })
   }
-
   const userData = props.user ? (
     <div>
       <h1>Profile</h1>
-      {props.user.imageUrl ?
-        <img  src={props.user.imageUrl} alt='profile pic'/> :
-        <form onSubmit={uploadImage}>
-          <input onChange={handlePicChange} required type="file" name="imageUrl" />
-          <input type="submit" class="btn btn-primary" />
-        </form>
-      }
       <p>
         <strong>Name: </strong> {props.user.name}
       </p>
       <p>
         <strong>Email: </strong> {props.user.email}
       </p>
-
       <p>content: {props.user.content}</p>
       <p>birthday: {props.user.birthday}</p>
       <p>artist type: {props.user.artistType}</p>

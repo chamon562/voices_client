@@ -4,24 +4,18 @@ import jwt_decode from 'jwt-decode';
 import setAuthToken from '../utils/setAuthToken';
 import { Redirect } from 'react-router-dom';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
-
 const Login = (props) => {
     let [email, setEmail] = useState('');
     let [password, setPassword] = useState('');
-
     let handleEmail = (e) => {
         setEmail(e.target.value);
     }
-
     let handlePassword = (e) => {
         setPassword(e.target.value);
     }
-
     let handleSubmit = (e) => {
         e.preventDefault();
-
         const userData = { email, password };
-
         axios.post(`${REACT_APP_SERVER_URL}/api/users/login`, userData)
         .then(response => {
             const { token } = response.data;
@@ -36,9 +30,7 @@ const Login = (props) => {
         })
         .catch(error => console.log(`Login error`, error));
     }
-
     if (props.user) return <Redirect to="/profile" user={props.user} />;
-
     return (
         <div className="row mt-4">
             <div className="col-md-7 offset-md-3">
@@ -60,5 +52,4 @@ const Login = (props) => {
         </div>
     );
 }
-
 export default Login;

@@ -9,7 +9,6 @@ import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 import About from './components/About';
 import Community from './components/Community'
-
 // import Footer from './components/Footer';
 import './App.css';
 // user needs to be logged in to see this route
@@ -46,7 +45,6 @@ function App() {
       setCurrentUser(null);
       setIsAuthenticated(false);
     }
-    return <Redirect to='/login' />
   }
   console.log('Current User', currentUser);
   console.log('Authenicated', isAuthenticated);
@@ -62,9 +60,7 @@ function App() {
           />
           <Route path="/about" component={ About } />
           <PrivateRoute path="/profile" component={ Profile } user={currentUser} nowCurrentUser={nowCurrentUser} />
-
-          <Route path="/community" render={() => <Community  user={currentUser} nowCurrentUser={nowCurrentUser}/>}/>
-            
+          <PrivateRoute path="/community" component={ Community } user={currentUser}  />
           <Route exact path="/" component={ Welcome } />
         </Switch>
       </div>
