@@ -8,6 +8,7 @@ const path = require('path')
 // cloudinary.config(process.env.CLOUDINARY_URL)
 
 const Profile = (props) => {
+  console.log(props)
   const [bioInput, setBioInput] = useState("");
   const [image, setImage] = useState("")
   const [loading, setLoading] = useState(false)
@@ -54,7 +55,7 @@ const Profile = (props) => {
         {
           bio: bioInput,
         }
-      );
+        );
       props.nowCurrentUser(updatedBio.data);
       // have a way to store whatever is being typed into the input box
     } catch (error) {

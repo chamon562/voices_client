@@ -30,7 +30,7 @@ const PostForm = (props) =>{
         const post = {user: props.user, title, category, content}
         axios.post(`${REACT_APP_SERVER_URL}/api/posts/newpost`, post)
         .then(response => {
-            console.log(response.data);
+            // console.log(response.data)
             setRedirect(true)
             window.location.reload(false)
             
@@ -38,7 +38,7 @@ const PostForm = (props) =>{
         
     }   
     
-    if(redirect) return <Redirect to="/community" />
+    if(redirect) return <Redirect to={{ pathname:"/community", state: {user:props.user} }} />
     
     return(
 

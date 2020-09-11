@@ -60,7 +60,8 @@ function App() {
           />
           <Route path="/about" component={ About } />
           <PrivateRoute path="/profile" component={ Profile } user={currentUser} nowCurrentUser={nowCurrentUser} />
-          <PrivateRoute path="/community" component={ Community } user={currentUser} nowCurrentUser={nowCurrentUser}/>
+          <Route path="/community" 
+          render={ (props) => <Community {...props} component={ Community } user={currentUser} />}/>
           <Route exact path="/" component={ Welcome } />
         </Switch>
       </div>

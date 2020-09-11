@@ -11,15 +11,17 @@ const Community = (props) =>{
     // let [content, setContent] = useState('')
     // let [category, setCategory] = useState('')
     useEffect(()=>{
+
         axios.get(`${REACT_APP_SERVER_URL}/api/posts/post` )
         .then(res=>{
             console.log(res.data.post)
+            console.log(props)
            let tempComPosts =  res.data.post.map((p, index) =>{
-                return <Post post={p} key={index} user={props.user}/>
+                return <Post post={p} key={index} user={props.location.state?props.location.state.user:props.user}/>
             }) 
             setComPosts(tempComPosts)
         })
-    }, []) 
+    }, [props]) 
     
 
     
@@ -53,7 +55,7 @@ const Community = (props) =>{
     return(
         <div>
             <h1>Community Page</h1>
-            <PostForm user={props.user}/>
+            <PostForm user={props.location.state?props.location.state.user:props.user}/>
             {comPosts ? comPosts : <> </>}
             <div>
                 {/* <p>title: {title}</p>
