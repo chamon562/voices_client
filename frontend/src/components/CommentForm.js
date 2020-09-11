@@ -32,7 +32,6 @@ const CommentForm = (props) =>{
     return(
 
         <div>
-            <h1>Leave a Comment</h1>
             
             <div className="row mt-4">
                 <div className="col-md-7 offset-md-3">
