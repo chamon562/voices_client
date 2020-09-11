@@ -8,6 +8,7 @@ const path = require('path')
 // cloudinary.config(process.env.CLOUDINARY_URL)
 
 const Profile = (props) => {
+  console.log(props)
   const [user, setUser] = useState(props.user)
   const [bioInput, setBioInput] = useState("");
   const [image, setImage] = useState("")
@@ -108,13 +109,7 @@ const Profile = (props) => {
   const userData = props.user ? (
     <div>
       <h1>Profile</h1>
-      {props.user.imageUrl ?
-        <img  src={props.user.imageUrl} alt='profile pic'/> :
-        <form onSubmit={uploadImage}>
-          <input onChange={handlePicChange} required type="file" name="imageUrl" />
-          <input type="submit" class="btn btn-primary" />
-        </form>
-      }
+      
       <p>
         <strong>Name: </strong> {props.user.name}
       </p>

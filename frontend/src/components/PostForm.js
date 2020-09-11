@@ -37,7 +37,7 @@ const PostForm = (props) =>{
         
     }   
     
-    if(redirect) return <Redirect to="/Community" />
+    if(redirect) return <Redirect to={{ pathname:"/community", state: {user:props.user} }} />
     
     return(
 
@@ -60,10 +60,6 @@ const PostForm = (props) =>{
                                 <label htmlFor="content">Content</label>
                                 <input type="text" content="content" value={content} onChange={handleContent} className="form-control"/>
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="image">Image</label>
-                                <input type="file" image="image" value={image} onChange={handleImage} className="form-control"/>
-                            </div>  
                             <button type="submit" className="btn btn-primary float-right">Submit</button>                           
                         </form>
                     </div>
