@@ -8,7 +8,6 @@ Review the Project 3 requirements and check out some examples.
 - cd into p3_voice_client/frontend then type npm start to start frontend.
 - cd into p3_voice_server/backend then type nodemon in terminal start to start backend server.
 Provide information in the following sections:
-
 ## Project Overview
 (Include project idea/concept, project name, who owns git master repo on github, team name [if desired], team member roles, elevator pitch)
 ## Project Idea/Concept ❥
@@ -42,10 +41,10 @@ BackEnd Warlock / FrontEnd / BackEnd
 Nicholas "Maestro" Phillips
 > Nicholas's gitHub
 
-Honey Sting/Stang (Elevator Pitch) ❥
+(Elevator Pitch) ❥
 People are often frustrated by the effort it takes to express their voice in a free and safe zone where they can be heard. Our App eliminates the feeling of being imprisoned without a voice. For years, people have trusted society to safe guard freedom of expression however time and time again they have found themselves.. their.. voice restricted. With voiceS, you can express yourself freely and bring about creative freedom on a platform that not only values your voice but broadcasts it, with the power of community.
 
-Models and Schemas
+# Models and Schemas
 ** Models & Schemas **
 (A Model is a IMPLEMENTATION OF A SCHEMA! ye boi.)
 (Because a Schema is the representation of a model)
@@ -63,7 +62,7 @@ post: [postSchema],
 bio: Text,
 birthday: Date,
 profilePic: String,
-<!-- content: Array() work in progress-->
+
 
 postSchema
 
@@ -84,15 +83,17 @@ reactionSchema (Stretch but a really needed stretch for the honey effect)
 
 user: Array (grab by user id and then display the user name)
 type: Array (of Reaction, setting it to Array can have how many display at once)
-User Stories
+# User Stories
 As a User I can Signup / Login.
 As a User I can publish my creative content.
 As a User I can view other Users creative content.
 As a User I can Edit / Delete my own creative content.
 As a User I can comment on creative publications and Edit / Delete Comments.
 As a User I can react (reactions/type of likes) to creative publications.
+# Wireframes
 
-Wireframes
+- Link to Wireframe Home if doesnt show on page: (https://drive.google.com/file/d/1zeI9mBFcNavYi9RbFDL2GWsRDb3suXOD/view?usp=sharing)
+
 Home Page
 Home Page
 Signup Page
@@ -122,9 +123,6 @@ Cloudinary (May<-- May have User Profile Pics)
 Work Allocation
 Who is your Gitmaster? Who will be doing what?
 FrontEnd / BackEnd
-
-Yoel "Sugar Honey Bunny" Morad
-> Yoel's gitHub
 
 gitMaster / FrontEnd / BackEnd
 
@@ -238,7 +236,7 @@ A full stack application safe and free platform to share and express your voice 
 // comments.js in backend
 router.post('/:postId/new', (req,res)=>{
     console.log(req.body)
-    // going into post and finding the post id
+    // going into post and finding the post _id and not id
     db.Post.findOne({
         _id: req.body.post._id
     })
