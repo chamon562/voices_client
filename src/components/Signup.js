@@ -43,8 +43,8 @@ const Signup = () => {
         if (password === confirmPassword) {
             const newUser = { name, email, password, artistType, content, birthday }
                         // connecting to the backend server 
-            let herokuUrl = `${REACT_APP_SERVER_URL}/api/users/register`
-            console.log(herokuUrl)
+            let heroUrl = `${REACT_APP_SERVER_URL}/api/users/register`
+            console.log(heroUrl)
             axios.post(herokuUrl, newUser)
             .then(response => {
                 console.log(response);
