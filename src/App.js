@@ -11,14 +11,16 @@ import About from './components/About';
 import Community from './components/Community'
 // import Footer from './components/Footer';
 import './App.css';
+
 // user needs to be logged in to see this route
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const user = localStorage.getItem('jwtToken');
   return <Route {...rest} render={(props) => {
-      return user ? <Component {...rest} {...props} /> : <Redirect to="/login" />
-    }}
+    return user ? <Component {...rest} {...props} /> : <Redirect to="/login" />
+  }}
   />;
 }
+
 function App() {
   // set state values
   let [currentUser, setCurrentUser] = useState("");
@@ -53,15 +55,15 @@ function App() {
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
       <div className="container mt-5">
         <Switch>
-          <Route path="/signup" component={ Signup } />
-          <Route 
-            path="/login" 
-            render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 
+          <Route path="/signup" component={Signup} />
+          <Route
+            path="/login"
+            render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />}
           />
-          <Route path="/about" component={ About } />
-          <PrivateRoute path="/profile" component={ Profile } user={currentUser} nowCurrentUser={nowCurrentUser} />
-          <PrivateRoute path="/community" component={ Community } user={currentUser}  />
-          <Route exact path="/" component={ Welcome } />
+          <Route path="/about" component={About} />
+          <PrivateRoute path="/profile" component={Profile} user={currentUser} nowCurrentUser={nowCurrentUser} />
+          <PrivateRoute path="/community" component={Community} user={currentUser} />
+          <Route exact path="/" component={Welcome} />
         </Switch>
       </div>
       {/* <Footer /> */}

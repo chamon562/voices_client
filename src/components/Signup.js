@@ -84,10 +84,6 @@ const Signup = () => {
                             <label htmlFor="content">Content</label>
                             <input type="content" name="content" value={content} onChange={handleContent} className="form-control"/>
                         </div>
-                        {/* <div className="form-group">
-                            <label htmlFor="bio">Bio</label>
-                            <input type="bio" name="bio" value={bio} onChange={handleBio} className="form-control"/>
-                        </div> */}
                         <button type="submit" className="btn btn-primary float-right">Submit</button>
                     </form>
                 </div>

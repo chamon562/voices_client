@@ -40,6 +40,12 @@ body {
   text-shadow: black 2px 1px 3px;
 
 }
+.delbut{
+  background-color: darkgray;
+  color: white;
+  border-radius: 20px;
+  
+}
 .title{
   margin: 0;
   background-color: rgb(75, 145, 236);

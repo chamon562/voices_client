@@ -17,18 +17,18 @@ const Login = (props) => {
         e.preventDefault();
         const userData = { email, password };
         axios.post(`${REACT_APP_SERVER_URL}/api/users/login`, userData)
-        .then(response => {
-            const { token } = response.data;
-            // Save token to localStorage
-            localStorage.setItem('jwtToken', token);
-            // Set token to auth header
-            setAuthToken(token);
-            // Decode token to get the user data
-            const decoded = jwt_decode(token);
-            // Set current user
-            props.nowCurrentUser(decoded);
-        })
-        .catch(error => console.log(`Login error`, error));
+            .then(response => {
+                const { token } = response.data;
+                // Save token to localStorage
+                localStorage.setItem('jwtToken', token);
+                // Set token to auth header
+                setAuthToken(token);
+                // Decode token to get the user data
+                const decoded = jwt_decode(token);
+                // Set current user
+                props.nowCurrentUser(decoded);
+            })
+            .catch(error => console.log(`Login error`, error));
     }
     if (props.user) return <Redirect to="/profile" user={props.user} />;
     return (

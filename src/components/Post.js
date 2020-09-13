@@ -59,7 +59,7 @@ const Post = (props) => {
                     {console.log(props.post.postedBy)}
                     {console.log(userData)}
                     { post.postedBy._id === userData.id ? 
-                    <button onClick={handleDelete}>Delete Post</button>
+                    <button className="modals" onClick={handleDelete}>Delete Post</button>
                     : 
                     <></> 
                     } 
