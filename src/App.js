@@ -9,6 +9,8 @@ import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 import About from './components/About';
 import Community from './components/Community'
+import Page404 from './components/404';
+
 // import Footer from './components/Footer';
 import './App.css';
 
@@ -21,13 +23,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   />;
 }
 
-const errorPage = () => {
-  return (
-    <div>
-      <h3>404 error page</h3>
-    </div>
-  )
-}
+// const errorPage = () => {
+//   return (
+//     <div>
+//       <h3>404 error page</h3>
+//     </div>
+//   )
+// }
 
 function App() {
   // set state values
@@ -72,7 +74,9 @@ function App() {
           <PrivateRoute path="/profile" component={Profile} user={currentUser} nowCurrentUser={nowCurrentUser} />
           <PrivateRoute path="/community" component={Community} user={currentUser} />
           <Route exact path="/" component={Welcome} />
-          <Route component={errorPage} />
+          {/* <Route component={errorPage} /> */}
+          <Route path="*" component={Page404} />
+
         </Switch>
       </div>
       {/* <Footer /> */}
