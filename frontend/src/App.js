@@ -11,6 +11,7 @@ import About from './components/About';
 import Community from './components/Community'
 // import Footer from './components/Footer';
 import './App.css';
+import Page404 from './components/404';
 // user needs to be logged in to see this route
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const user = localStorage.getItem('jwtToken');
@@ -62,6 +63,7 @@ function App() {
           <PrivateRoute path="/profile" component={ Profile } user={currentUser} nowCurrentUser={nowCurrentUser} />
           <PrivateRoute path="/community" component={ Community } user={currentUser}  />
           <Route exact path="/" component={ Welcome } />
+          <Route path="*" component={Page404} />
         </Switch>
       </div>
       {/* <Footer /> */}
