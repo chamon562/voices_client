@@ -43,7 +43,8 @@ const Signup = () => {
         if (password === confirmPassword) {
             const newUser = { name, email, password, artistType, content, birthday }
                         // connecting to the backend server 
-            axios.post(`${REACT_APP_SERVER_URL}/api/users/register`, newUser)
+            let herokuUrlSign = `${REACT_APP_SERVER_URL}/api/users/register`
+            axios.post(herokuUrlSign, newUser)
             .then(response => {
                 console.log(response);
                 setRedirect(true);
