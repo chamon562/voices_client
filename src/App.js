@@ -21,6 +21,14 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   />;
 }
 
+const errorPage = () => {
+  return (
+    <div>
+      <h3>404 error page</h3>
+    </div>
+  )
+}
+
 function App() {
   // set state values
   let [currentUser, setCurrentUser] = useState("");
@@ -64,6 +72,7 @@ function App() {
           <PrivateRoute path="/profile" component={Profile} user={currentUser} nowCurrentUser={nowCurrentUser} />
           <PrivateRoute path="/community" component={Community} user={currentUser} />
           <Route exact path="/" component={Welcome} />
+          <Route component={errorPage} />
         </Switch>
       </div>
       {/* <Footer /> */}
