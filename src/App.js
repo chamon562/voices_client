@@ -10,6 +10,7 @@ import Welcome from './components/Welcome';
 import About from './components/About';
 import Community from './components/Community'
 import Page404 from './components/404';
+// require('dotenv').config()
 
 // import Footer from './components/Footer';
 import './App.css';
